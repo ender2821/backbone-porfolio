@@ -1,0 +1,50 @@
+<div class="logsWrapper header">
+	<a class="topNav" href="/"><h1>Timesheet</h1></a>
+	<a class="topNav" href="/#timeline"><h1>Timeline</h1></a>
+	<a class="topNav" href="/#new"><h1>New Log</h1></a>	
+	<p class="left">{{TotalLog}} Logs</p>
+</div>
+
+<div class="graph">
+	<svg>
+		<path id="polyline4" style="fill:none;stroke:#222;stroke-width:1" stroke-dasharray="1,2"></path>
+		<path id="polyline3" style="fill:none;stroke:#72dec2;stroke-width:1"></path>
+		<path id="polyline2" style="fill:none;stroke:red;stroke-width:1"></path>
+		<path id="polyline1" style="fill:none;stroke:#000;stroke-width:1"></path>
+	</svg>
+
+	<p class="oldest">{{OldestLog}}</p>
+	<p class="newest">{{NewestLog}}</p>
+	<div class="legend">
+		<span class="legend1" category="{{attributes.category}}"><div></div><p>visual</p></span>
+		<span class="legend2" category="{{attributes.category}}"><div></div><p>design</p></span>
+		<span class="legend3" category="{{attributes.category}}"><div></div><p>development</p></span>
+	</div>
+	<p class="total">{{TotalHours}} Hours</p>
+</div>
+
+<div class="logsWrapper">
+  	{{#each LogSubCategories.models}}​
+	   	<div class="logs" category="{{attributes.category}}">
+	   		<svg>
+				<circle cx="70" cy="70" r="{{attributes.size}}" class="{{attributes.category}}"></circle>
+			</svg>
+	   		<div class="text">
+	   			<b>{{attributes.name}}</b>
+	   			<span>{{attributes.percent}}%</span>
+	   			<p>{{attributes.hours}} Hours</p>
+	   			
+				{{#if attributes.singular}}
+					<p>{{attributes.logs}} Log</p>
+				{{else}}
+					<p>{{attributes.logs}} Logs</p>
+			  	{{/if}}
+	   		</div>
+	   	</div>​
+  	{{/each}}
+</div>
+
+<div class="note">
+	<!--<p>Backbone.js + jQuery + Handlebars</p>-->
+	<!--<p>Based on design by XXIIVV</p>-->
+</div>

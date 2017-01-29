@@ -1,0 +1,217 @@
+body {
+    background-color: #fff;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+	font-weight: 200;
+}
+.horaireapp {
+	width: 710px;
+	margin: 0 auto;
+}
+
+.transition {
+	webkit-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+}
+
+.topNav {
+    top: 15px;
+    right: 20px;
+	position: absolute;    
+	width: auto;
+	text-decoration: none;
+	color: #000;
+	border: 2px #000 solid;
+    border-radius: 15px;
+	display: inline-block;
+}
+
+.topNav:nth-child(2) {
+	right: 140px;
+}
+
+.topNav:nth-child(3) {
+	right: 250px;
+}
+
+.topNav:hover {
+	color: #555;
+	border: 2px #555 solid;
+}
+
+h1 {
+	font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 12px;
+    display: block;
+    padding: 7px 20px 5px 20px;
+    width: auto;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.logsWrapper {
+	width: 710px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.header {
+	height: 50px;
+	margin-top: 50px;
+}
+
+.logsWrapper .left {
+	position: absolute;
+	text-transform: capitalize;
+    top: 35px;
+    left: 30px;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 0px;
+    text-align: left;
+}
+
+.graph {
+	width: 710px;
+	margin: 0 auto;
+	height: 200px;
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.graph svg {
+	width: 100%;
+	height: 100%;
+}
+.graph .hide {
+	width: 0%;
+}
+
+.graph .legend {
+	position: absolute;
+	bottom:15px;	
+	left: 30px;
+}
+
+.graph span {
+	display: inline-block;
+	text-align:right;
+	margin-right:15px;
+}
+
+.graph span div {
+	width: 15px;
+	height: 3px;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.graph span p {
+	display: inline-block;
+	text-transform: capitalize;
+}
+
+.graph .legend1 div {
+	border-top:1px solid #72dec2;
+}
+.graph .legend2 div {
+	border-top:1px solid red;
+}
+.graph .legend3 div {
+	border-top:1px solid #ccc;
+}
+
+.graph p {
+	font-weight: 300;
+    font-size: 11px;
+    line-height: 15px;
+    margin-bottom: 0px;
+}
+
+.graph .oldest {
+	position: absolute;
+    top: 15px;
+    left: 30px;
+    color: gray;
+    text-align: left;
+}
+
+.graph .newest {
+	position: absolute;
+    top: 15px;
+    right: 30px;
+    text-align: right;
+    color: gray;
+}
+
+.graph .total {
+	position: absolute;
+    bottom: 15px;
+    right: 30px;
+    text-align: right;
+}
+
+.logs {
+	width: 140px;
+    color: #000;
+    display: inline-block;
+    padding: 15px;
+    position: relative;
+    margin-bottom: 30px;
+    line-height: 26px;
+    font-size: 17px;
+    overflow: hidden;
+    opacity: 0;
+}
+.logsWrapper .hidden {
+	display: none;
+}
+.logs .visual {
+	fill: red;
+}
+.logs .development {
+	fill: #ccc;
+}
+.logs .research {
+	fill: #72dec2;
+}
+.logs .text {	
+    border-top: 1px solid #555;
+    font-size: 11px;
+    line-height: 15px;
+    margin-bottom: 0px;
+    padding-top: 14px;
+}
+.logs b {
+	font-weight: normal;
+	font-size: 12px;
+	padding-top: 1px;
+    text-transform: uppercase;
+}
+.logs p {
+	font-weight: 300;
+    font-size: 11px;
+    line-height: 15px;
+    margin-bottom: 0px;
+}
+.logs span {
+	font-size: 11px;
+	float: right;
+    color: gray;
+}
+
+.note {
+	width: 710px;
+	position: relative;
+	margin: 0 auto;
+	font-weight: 300;
+    font-size: 11px;
+    line-height: 15px;
+    padding-left: 36px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
