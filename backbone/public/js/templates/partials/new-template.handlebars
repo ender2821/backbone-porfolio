@@ -1,0 +1,32 @@
+<div class="logsWrapper header">
+	<a class="topNav" href="/"><h1>Timesheet</h1></a>
+	<a class="topNav" href="/#timeline"><h1>Timeline</h1></a>
+	<a class="topNav" href="/#new"><h1>New Log</h1></a>	
+	<p class="left">{{TotalLog}} Logs</p>
+</div>
+
+<div class="newLog">
+	<p>Create log</p>
+	<form>
+		<select name="project">
+			{{#each projects}}
+				<option>{{this.name}}</option>
+			{{/each}}
+			<option>New project</option>
+		</select>
+		<input name="hours">Hours</input>
+		<select name="category">
+			{{#each category}}
+				<option>{{this.name}}</option>
+			{{/each}}
+			<option>New category</option>
+		</select>
+		<select name="subcategory">
+			{{#each subcategory}}
+				<option>{{this.name}}</option>
+			{{/each}}
+			<option>New subcategory</option>
+		</select>
+		<input name="date">Date</input>
+	</form>
+</div>

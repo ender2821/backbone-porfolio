@@ -62,13 +62,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      // scripts: {
-      //   files: ['**/*.js'],
-      //   tasks: ['jshint'],
-      //   options: {
-      //     spawn: false,
-      //   },
-      // },
+
       src: {
         files: ['lib/*.js', 'css/**/*.scss', '!lib/dontwatch.js'],
         tasks: ['default'],
@@ -78,22 +72,13 @@ module.exports = function(grunt) {
         tasks: ['compass'],
       },
     },
-    // plato: {
-    //   your_task: {
-    //     options : {
-    //         exclude: /\.min\.js$/    // excludes source files finishing with ".min.js"
-    //     },
-    //     files: {
-    //         'public/reports': ['public/js/app/**/*.js']
-    //     }
-    //   }
-    //
+
     'http-server': {
 
         'dev': {
 
             // the server root directory
-            root: "public",
+            root: "public/",
 
             // the server port
             // can also be written as a function, e.g.
@@ -122,7 +107,7 @@ module.exports = function(grunt) {
 
             // Proxies all requests which can't be resolved locally to the given url
             // Note this this will disable 'showDir'
-            proxy: "http://someurl.com",
+            // proxy: "http://someurl.com",
 
             /// Use 'https: true' for default module SSL configuration
             /// (default state is disabled)
@@ -134,7 +119,7 @@ module.exports = function(grunt) {
             // Tell grunt task to open the browser
             openBrowser : false,
 
-            // customize url to serve specific pages
+            // customize url to serve specific pages`
             // customPages: {
             //     "/readme": "README.md",
             //     "/readme.html": "README.html"
@@ -143,13 +128,7 @@ module.exports = function(grunt) {
         }
 
     },
-    // express: {
-    // server: {
-    //   options: {
-    //     port: 9001,
-    //     bases: ['public', 'dist']
-    //   }
-    // }
+
   });
 
   grunt.registerTask('desktopBuild', function() {
@@ -163,71 +142,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  // grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-express');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-http-server');
 
-  // grunt.loadNpmTasks('grunt-plato');
-
   grunt.registerTask('test', ['jshint']);
   grunt.registerTask('minify', ['requirejs:desktopJS', 'requirejs:mobileJS']);
-  // grunt.registerTask('complexity:report', '');
   grunt.registerTask('build', ['desktopBuild', 'mobileBuild']);
   grunt.registerTask('default', ['test', 'build','http-server']);
-  // grunt.registerTask('express', [ 'express:dev', 'watch' ]);
 
-// // var express = require("express"),
-//     var PORT = 40;
-//     var http = require("http");
-    // var connect = require("connect");
-    // var app = connect();
-    // Logging middleware
-    // app.use(function(request, response, next) {
-    //  console.log("In comes a " + request.method + " to " + request.url);
-    //  next();
-    // });
-
-    // Send "hello world"
-    // app.use(function(request, response) {
-    //   response.writeHead(200, { "Content-Type": "text/plain" });
-    //   response.end("Hello world!\n");
-    // });
-  // var app = require('express')();
-
-  //   var server = http.createServer(app).listen( PORT, function() {
-  //     console.log('Express server listening on port ' + PORT);
-  //   } );
-
-
-  //     // , server = require('http').createServer(app);
-  //   //   // , io = require('socket.io').listen(server);
-
-  //   app.get('/', function (req, res) {
-  //          console.log("In comes a " + req.method + " to " + req.url);
-
-  //     res.sendfile('public/index.html');
-  //   });
-
-    // io.sockets.on('connection', function (socket) {
-    //   socket.emit('news', { hello: 'world' });
-    //   socket.on('my other event', function (data) {
-    //     console.log(data);
-    //   });
-    // });
-
-    // exports = module.exports = server;
-    // // delegates use() function
-    // exports.use = function() {
-    //   app.use.apply(app, arguments);
-    // };
-
-
-
-  };
+};
 
 
 
 
-// });
 
