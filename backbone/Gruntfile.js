@@ -106,14 +106,69 @@ module.exports = function(grunt) {
     //         'public/reports': ['public/js/app/**/*.js']
     //     }
     //   }
+    //
+    'http-server': {
+
+        'dev': {
+
+            // the server root directory
+            root: "public",
+
+            // the server port
+            // can also be written as a function, e.g.
+            // port: function() { return 8282; }
+            port: 8282,
+
+            // the host ip address
+            // If specified to, for example, "127.0.0.1" the server will
+            // only be available on that ip.
+            // Specify "0.0.0.0" to be available everywhere
+            host: "0.0.0.0",
+
+            cache: 0,
+            showDir : true,
+            autoIndex: true,
+
+            // server default file extension
+            ext: "html",
+
+            // run in parallel with other tasks
+            runInBackground: true|false,
+
+            // specify a logger function. By default the requests are
+            // sent to stdout.
+            logFn: function(req, res, error) { },
+
+            // Proxies all requests which can't be resolved locally to the given url
+            // Note this this will disable 'showDir'
+            proxy: "http://someurl.com",
+
+            /// Use 'https: true' for default module SSL configuration
+            /// (default state is disabled)
+            https: {
+                cert: "cert.pem",
+                key : "key.pem"
+            },
+
+            // Tell grunt task to open the browser
+            openBrowser : false,
+
+            // customize url to serve specific pages
+            customPages: {
+                "/readme": "README.md",
+                "/readme.html": "README.html"
+            }
+
+        }
+
+    },
+    // express: {
+    // server: {
+    //   options: {
+    //     port: 9001,
+    //     bases: ['public', 'dist']
+    //   }
     // }
-    express: {
-    server: {
-      options: {
-        port: 9001,
-        bases: ['public', 'dist']
-      }
-    }
   }
   });
 
@@ -134,17 +189,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // grunt.loadNpmTasks('grunt-plato');
-   
+
   grunt.registerTask('test', ['jshint']);
   grunt.registerTask('minify', ['requirejs:desktopJS', 'requirejs:mobileJS']);
   // grunt.registerTask('complexity:report', '');
   grunt.registerTask('build', ['desktopBuild', 'mobileBuild']);
-  grunt.registerTask('default', ['test', 'build','express']);
-  grunt.registerTask('express', [ 'express:dev', 'watch' ]);
+  grunt.registerTask('default', ['test', 'build']);
+  grunt.loadNpmTasks('grunt-http-server');
+  // grunt.registerTask('express', [ 'express:dev', 'watch' ]);
 
-// var express = require("express"),
-    var PORT = 40;
-    var http = require("http");
+// // var express = require("express"),
+//     var PORT = 40;
+//     var http = require("http");
     // var connect = require("connect");
     // var app = connect();
     // Logging middleware
@@ -158,21 +214,21 @@ module.exports = function(grunt) {
     //   response.writeHead(200, { "Content-Type": "text/plain" });
     //   response.end("Hello world!\n");
     // });
-  var app = require('express')();
+  // var app = require('express')();
 
-    var server = http.createServer(app).listen( PORT, function() {
-      console.log('Express server listening on port ' + PORT);
-    } );
+  //   var server = http.createServer(app).listen( PORT, function() {
+  //     console.log('Express server listening on port ' + PORT);
+  //   } );
 
-  
-      // , server = require('http').createServer(app);
-    //   // , io = require('socket.io').listen(server);
 
-    app.get('/', function (req, res) {
-           console.log("In comes a " + req.method + " to " + req.url);
+  //     // , server = require('http').createServer(app);
+  //   //   // , io = require('socket.io').listen(server);
 
-      res.sendfile('public/index.html');
-    });
+  //   app.get('/', function (req, res) {
+  //          console.log("In comes a " + req.method + " to " + req.url);
+
+  //     res.sendfile('public/index.html');
+  //   });
 
     // io.sockets.on('connection', function (socket) {
     //   socket.emit('news', { hello: 'world' });
@@ -189,4 +245,10 @@ module.exports = function(grunt) {
 
 
 
-};
+  };
+
+
+
+
+// });
+
