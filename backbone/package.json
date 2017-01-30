@@ -42,7 +42,7 @@
     "amdclean": "2.x",
     "grunt-contrib-uglify": "~0.3.2",
     "grunt-contrib-handlebars":"1.0.0",
-    "grunt-express-server":"0.5.3",
+    "grunt-express":"1.0",
     "grunt-contrib-watch":"1.0.0",
     "grunt-contrib-sass":"1.0.0"
   }

@@ -108,51 +108,13 @@ module.exports = function(grunt) {
     //   }
     // }
     express: {
+    server: {
       options: {
-        // Override the command used to start the server.
-        // (do not use 'coffee' here, the server will not be able to restart
-        //  see below at opts for coffee-script support)
-        cmd: process.argv[0],
-
-        // Will turn into: `node OPT1 OPT2 ... OPTN path/to/server.js ARG1 ARG2 ... ARGN`
-        // (e.g. opts: ['node_modules/coffee-script/bin/coffee'] will correctly parse coffee-script)
-        opts: [ ],
-        args: [ ],
-
-        // Setting to `false` will effectively just run `node path/to/server.js`
-        background: true,
-
-        // Called when the spawned server throws errors
-        fallback: function() {},
-
-        // Override node env's PORT
-        port: 3000,
-
-        // Override node env's NODE_ENV
-        node_env: undefined,
-
-        // Enable Node's --harmony flag
-        harmony: false,
-
-        // Consider the server to be "running" after an explicit delay (in milliseconds)
-        // (e.g. when server has no initial output)
-        delay: 0,
-
-        // Regular expression that matches server output to indicate it is "running"
-        output: ".+",
-
-        // Set --debug (true | false | integer from 1024 to 65535, has precedence over breakOnFirstLine)
-        debug: false,
-
-        // Set --debug-brk (true | false | integer from 1024 to 65535)
-        breakOnFirstLine: false,
-
-        // Object with properties `out` and `err` both will take a path to a log file and
-        // append the output of the server. Make sure the folders exist.
-        logs: undefined
-
+        port: 9001,
+        bases: ['public', 'dist']
       }
     }
+  }
   });
 
   grunt.registerTask('desktopBuild', function() {
@@ -166,7 +128,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-express-server');
+  // grunt.loadNpmTasks('grunt-express-server');
+  grunt.loadNpmTasks('grunt-express');
+
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // grunt.loadNpmTasks('grunt-plato');
@@ -179,24 +143,50 @@ module.exports = function(grunt) {
   grunt.registerTask('express', [ 'express:dev', 'watch' ]);
 
 // var express = require("express"),
-    var PORT = 400;
+    var PORT = 40;
     var http = require("http");
-    var connect = require("connect");
-    var app = connect();
+    // var connect = require("connect");
+    // var app = connect();
     // Logging middleware
-    app.use(function(request, response, next) {
-     console.log("In comes a " + request.method + " to " + request.url);
-     next();
-    });
+    // app.use(function(request, response, next) {
+    //  console.log("In comes a " + request.method + " to " + request.url);
+    //  next();
+    // });
 
     // Send "hello world"
-    app.use(function(request, response) {
-      response.writeHead(200, { "Content-Type": "text/plain" });
-    response.end("Hello world!\n");
-    });
+    // app.use(function(request, response) {
+    //   response.writeHead(200, { "Content-Type": "text/plain" });
+    //   response.end("Hello world!\n");
+    // });
+  var app = require('express')();
 
     var server = http.createServer(app).listen( PORT, function() {
       console.log('Express server listening on port ' + PORT);
     } );
+
+  
+      // , server = require('http').createServer(app);
+    //   // , io = require('socket.io').listen(server);
+
+    app.get('/', function (req, res) {
+           console.log("In comes a " + req.method + " to " + req.url);
+
+      res.sendfile('public/index.html');
+    });
+
+    // io.sockets.on('connection', function (socket) {
+    //   socket.emit('news', { hello: 'world' });
+    //   socket.on('my other event', function (data) {
+    //     console.log(data);
+    //   });
+    // });
+
+    // exports = module.exports = server;
+    // // delegates use() function
+    // exports.use = function() {
+    //   app.use.apply(app, arguments);
+    // };
+
+
 
 };
