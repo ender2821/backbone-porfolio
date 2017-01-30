@@ -1,23 +1,4 @@
 module.exports = function(grunt) {
-  // var amdclean = require('amdclean'),
-  //   fs = require('fs'),
-  //   amdcleanLogic = function (data) {
-  //     var outputFile = data.path;
-  //     fs.writeFileSync(outputFile, amdclean.clean({
-  //       'code': fs.readFileSync(outputFile),
-  //       'globalObject': true,
-  //       'globalObjectName': 'BRB',
-  //       'rememberGlobalObject': false,
-  //       'removeModules': ['text'],
-  //       'prefixTransform': function(moduleName) {
-  //         return moduleName.substring(moduleName.lastIndexOf('_') + 1, moduleName.length);
-  //       },
-  //       'wrap': {
-  //         'start': '(function() {\n',
-  //         'end': '\n}());'
-  //       }
-  //     }));
-  //   };
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     requirejs: {
@@ -117,13 +98,13 @@ module.exports = function(grunt) {
             // the server port
             // can also be written as a function, e.g.
             // port: function() { return 8282; }
-            port: 8282,
+            port: 40,
 
             // the host ip address
             // If specified to, for example, "127.0.0.1" the server will
             // only be available on that ip.
             // Specify "0.0.0.0" to be available everywhere
-            host: "0.0.0.0",
+            host: "127.0.0.1",
 
             cache: 0,
             showDir : true,
@@ -133,11 +114,11 @@ module.exports = function(grunt) {
             ext: "html",
 
             // run in parallel with other tasks
-            runInBackground: true|false,
+            runInBackground: false,
 
             // specify a logger function. By default the requests are
             // sent to stdout.
-            logFn: function(req, res, error) { },
+            // logFn: function(req, res, error) { },
 
             // Proxies all requests which can't be resolved locally to the given url
             // Note this this will disable 'showDir'
@@ -145,19 +126,19 @@ module.exports = function(grunt) {
 
             /// Use 'https: true' for default module SSL configuration
             /// (default state is disabled)
-            https: {
-                cert: "cert.pem",
-                key : "key.pem"
-            },
+            // https: {
+            //     cert: "cert.pem",
+            //     key : "key.pem"
+            // },
 
             // Tell grunt task to open the browser
             openBrowser : false,
 
             // customize url to serve specific pages
-            customPages: {
-                "/readme": "README.md",
-                "/readme.html": "README.html"
-            }
+            // customPages: {
+            //     "/readme": "README.md",
+            //     "/readme.html": "README.html"
+            // }
 
         }
 
@@ -169,7 +150,6 @@ module.exports = function(grunt) {
     //     bases: ['public', 'dist']
     //   }
     // }
-  }
   });
 
   grunt.registerTask('desktopBuild', function() {
@@ -185,8 +165,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   // grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-express');
-
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-http-server');
 
   // grunt.loadNpmTasks('grunt-plato');
 
@@ -194,8 +174,7 @@ module.exports = function(grunt) {
   grunt.registerTask('minify', ['requirejs:desktopJS', 'requirejs:mobileJS']);
   // grunt.registerTask('complexity:report', '');
   grunt.registerTask('build', ['desktopBuild', 'mobileBuild']);
-  grunt.registerTask('default', ['test', 'build']);
-  grunt.loadNpmTasks('grunt-http-server');
+  grunt.registerTask('default', ['test', 'build','http-server']);
   // grunt.registerTask('express', [ 'express:dev', 'watch' ]);
 
 // // var express = require("express"),

@@ -44,6 +44,7 @@
     "grunt-contrib-handlebars":"1.0.0",
     "grunt-express":"1.0",
     "grunt-contrib-watch":"1.0.0",
-    "grunt-contrib-sass":"1.0.0"
+    "grunt-contrib-sass":"1.0.0",
+    "grunt-http-server":"2.0.0"
   }
 }
